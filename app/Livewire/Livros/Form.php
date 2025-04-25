@@ -6,11 +6,13 @@ use App\Models\Autor;
 use App\Models\Categoria;
 use App\Models\Livro;
 use Livewire\Component;
-
-use function Livewire\Volt\title;
+use Livewire\WithFileUploads; // Importar o trait
+use Illuminate\Support\Facades\Storage;
 
 class Form extends Component
 {
+    use WithFileUploads; // Usar o trait
+
     public $livroId;
 
     public $titulo, $descricao, $ano_publicacao, $quantidade, $imagem, $status, $isbn, $autor_id, $categoria_id;
@@ -80,8 +82,19 @@ class Form extends Component
 
     public function save()
     {
-
         $this->validate();
+
+        // Processar o upload da imagem
+        if ($this->imagem) {
+            $this->imagem = $this->imagem->store('livros', 'public'); // Salva a imagem e retorna o caminho
+        }
+
+        if ($this->livroId) {
+            $livro = Livro::find($this->livroId);
+            if ($livro && $livro->imagem != $this->imagem) {
+                Storage::disk('public')->delete($livro->imagem); // Remove a imagem antiga
+            }
+        }
 
         $autorId = $this->idAutorSelecionado ?: Autor::firstOrCreate(['nome' => $this->autorNome])->id;
         $categoriaId = $this->idCategoriaSelecionado ?: Categoria::firstOrCreate(['nome' => $this->categoriaNome])->id;
@@ -91,7 +104,7 @@ class Form extends Component
             'descricao' => $this->descricao,
             'ano_publicacao' => $this->ano_publicacao,
             'quantidade' => $this->quantidade,
-            'imagem' => $this->imagem,
+            'imagem' => $this->imagem, // Salva o caminho da imagem no banco de dados
             'status' => $this->status ?? 'disponivel',
             'isbn' => $this->isbn,
             'autor_id' => $autorId,
