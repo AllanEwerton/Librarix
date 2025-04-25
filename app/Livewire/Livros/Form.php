@@ -30,7 +30,7 @@ class Form extends Component
             'ano_publicacao' => 'nullable|integer|min:1700|max:' . date('Y'),
             'quantidade' => 'required|integer|min:0',
             'imagem' => 'nullable|image|max:2048',
-            'isbn' => 'nullable|string|max:17',
+            'isbn' => 'required|string|max:17|unique:livros,isbn,' . $this->livroId,
         ];
     }
 
