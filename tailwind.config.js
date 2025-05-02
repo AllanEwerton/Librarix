@@ -14,6 +14,32 @@ export default {
             fontFamily: {
                 sans: ['Figtree', ...defaultTheme.fontFamily.sans],
             },
+            colors: {
+                azul: {
+                  escuro: '#1E3A8A',
+                  celeste: '#00BFFF',
+                  claro: '#E0F7FA', /* Azul claro suave */
+                },
+                verde: {
+                  bandeira: '#1B5E20',
+                  folha: '#228B22',
+                },
+                amarelo: {
+                  ouro: '#FFB300',
+                  sol: '#FFD700',
+                },
+                vermelho: {
+                  suave: '#EF4444',
+                  vivo: '#E63946',
+                },
+                cinza: {
+                  claro: '#F9FAFB',
+                  medio: '#6B7280',
+                },
+                bege: {
+                  claro: '#FAF3E0',
+                },
+              },
         },
     },
 
