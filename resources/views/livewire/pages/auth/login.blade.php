@@ -50,23 +50,17 @@ new #[Layout('layouts.guest')] class extends Component
 
         <!-- Remember Me -->
         <div class="block mt-4">
-            <label for="remember" class="inline-flex items-center">
-                <input
-                    wire:model="form.remember"
-                    id="remember"
-                    type="checkbox"
-                    name="remember"
-                    class="rounded border-verde-bandeira text-verde-folha shadow-sm focus:ring-verde-folha"
-                >
-                <span class="ms-2 text-sm text-verde-bandeira">{{ __('Remember me') }}</span>
-            </label>
-        </div>
+    <label for="remember" class="inline-flex items-center">
+        <input wire:model="form.remember" id="remember" type="checkbox" class="rounded border-gray-300 text-verde-bandeira shadow-sm focus:ring-verde-folha" name="remember">
+        <span class="ms-2 text-sm text-cinza-medio">{{ __('Remember me') }}</span>
+    </label>
+</div>
 
 
         <div class="flex items-center justify-end mt-4">
             @if (Route::has('password.request'))
                 <a
-                    class="underline text-sm text-verde-bandeira hover:text-verde-folha rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-verde-bandeira"
+                    class="underline text-sm text-cinza-medio hover:text-azul-escuro rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-verde-folha"
                     href="{{ route('password.request') }}" wire:navigate
                 >
                     {{ __('Forgot your password?') }}
@@ -83,6 +77,7 @@ new #[Layout('layouts.guest')] class extends Component
                 </x-secondary-button>
             </a>
 
+            
         </div>
 
     </form>
