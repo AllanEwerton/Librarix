@@ -12,8 +12,16 @@ Route::view('profile', 'profile')
     ->middleware(['auth'])
     ->name('profile');
 
-Route::view('alunos','alunos')
+Route::view('aluno','aluno')
 ->middleware(['auth'])
-->name('alunos.lista');
+->name('aluno');
+
+Route::view('autor', 'autor')
+->middleware(['auth'])
+->name('autor');
+
+Route::view('livro', 'livro')
+->middleware(['auth'])
+->name('livro');
 
 require __DIR__.'/auth.php';

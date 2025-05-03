@@ -24,7 +24,7 @@ new class extends Component
                 <!-- Logo -->
                 <div class="shrink-0 flex items-center text-white pb-8 ">
                     <a href="{{ route('dashboard') }}" wire:navigate>
-                        <img src="{{ asset('img/logo.png') }}" alt="" class= h-28 object-contain">
+                        <x-application-logo class=" h-40" />
                     </a>
                 </div>
 
@@ -36,10 +36,17 @@ new class extends Component
                         {{ __('Dashboard') }}
                     </x-nav-link>
 
-                    <x-nav-link :href="route('alunos.lista')" :active="request()->routeIs('alunos.lista')" wire:navigate>
-                        Lista de alunos
+                    <x-nav-link :href="route('aluno')" :active="request()->routeIs('aluno')" wire:navigate>
+                        Alunos
                     </x-nav-link>
 
+                    <x-nav-link :href="route('autor')" :active="request()->routeIs('autor')" wire:navigate>
+                        Autores
+                    </x-nav-link>
+
+                    <x-nav-link :href="route('livro')" :active="request()->routeIs('livro')" wire:navigate>
+                        Livros
+                    </x-nav-link>
 
                 </div>
 
