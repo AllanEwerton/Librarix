@@ -3,6 +3,7 @@
 namespace App\Livewire\Livros;
 
 use App\Models\Livro;
+use Livewire\Attributes\On;
 use Livewire\Component;
 
 class Lista extends Component
@@ -10,6 +11,7 @@ class Lista extends Component
     public $livros = [];
     public $livroId;
 
+    #[On('livroSalvo')]
     public function mount(){
         $this->carregarLivros();
     }

@@ -16,7 +16,7 @@ new class extends Component
     }
 }; ?>
 
-<nav x-data="{ open: false }" class="bg-azul-escuro border-b border-cinza-medio pt-10">
+<nav x-data="{ open: false }" class="bg-azul-escuro border-b border-cinza-medio pt-10 fixed top-0 inset-x-0 z-50 shadow">
     <!-- Primary Navigation Menu -->
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex justify-between h-16">
@@ -102,6 +102,7 @@ new class extends Component
                 {{ __('Dashboard') }}
             </x-responsive-nav-link>
         </div>
+        
 
         <!-- Responsive Settings Options -->
         <div class="pt-4 pb-1 border-t border-cinza-medio">

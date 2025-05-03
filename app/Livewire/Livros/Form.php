@@ -119,6 +119,7 @@ class Form extends Component
 
         session()->flash('message', 'Livro "' . $this->titulo . '" salvo com sucesso!');
         $this->reset();
+        $this->dispatch('livroSalvo');
     }
 
     public function render()
