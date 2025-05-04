@@ -28,8 +28,5 @@
             </div>
         </div>
     @endif
-
-
-
 </div>
 

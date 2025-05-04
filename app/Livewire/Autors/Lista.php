@@ -9,6 +9,8 @@ use Livewire\Attributes\On;
 class Lista extends Component
 {
     public $autores = [];
+    public $autorId;
+    public $nome;
 
 
 

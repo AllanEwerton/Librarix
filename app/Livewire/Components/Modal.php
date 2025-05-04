@@ -16,14 +16,10 @@ class Modal extends Component
     #[On('abrirModal')]
     public function abrirModal($data,$title, $id)
     {
-
         $this->isOpen = true;
         $this->idAutor = $id;
         $this->view = $data;
         $this->title = $title;
-
-
-
 
     }
 
