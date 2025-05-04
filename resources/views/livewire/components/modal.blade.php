@@ -20,7 +20,7 @@
                     <!-- Modal body -->
                     <div class="p-4 md:p-5">
                         @if ($view)
-                            <livewire:is :component="$view" />
+                        <livewire:is :component="$view" :id="$id" />
                         @endif
 
                     </div>
