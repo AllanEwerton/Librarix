@@ -30,10 +30,10 @@ class Form extends Component
         if($this->idAutor){
             $autor = Autor::find($this->idAutor);
             $autor->update(['nome' => $this->nome, ]);
-            session()->flash('message', 'Autor '.$this->nome.' atualizado com sucesso.');
+            session()->flash('ok', 'Autor '.$this->nome.' atualizado com sucesso.');
         }else{
             $autor = Autor::create(['nome' => $this->nome, ]);
-            session()->flash('message', 'Autor '.$this->nome.' cadastrado com sucesso.');
+            session()->flash('ok', 'Autor '.$this->nome.' cadastrado com sucesso.');
         }
 
     }

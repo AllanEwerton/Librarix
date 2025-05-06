@@ -113,11 +113,12 @@ class Form extends Component
 
         if ($this->livroId) {
             Livro::find($this->livroId)->update($data);
+            session()->flash('ok', 'Livro "' . $this->titulo . '" editado com sucesso!');
         } else {
             Livro::create($data);
+            session()->flash('ok', 'Livro "' . $this->titulo . '" criado com sucesso!');
         }
 
-        session()->flash('message', 'Livro "' . $this->titulo . '" salvo com sucesso!');
         $this->reset();
         $this->dispatch('livroSalvo');
     }

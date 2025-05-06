@@ -13,13 +13,15 @@ return new class extends Migration
     {
         Schema::create('classes', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('ano');
+            $table->string('nome');
+            $table->year('ano');
             $table->enum('turno', ['manhã', 'tarde', 'noite']);
             $table->enum('nivel', ['fundamental', 'médio', 'eja']);
-            $table->enum('status', ['active', 'inactive'])->default('active');
+            $table->enum('status', ['ativo', 'inativo'])->default('ativo');
             $table->timestamps();
+            $table->unique(['nome', 'ano', 'turno', 'nivel']);
         });
+
     }
 
     /**
