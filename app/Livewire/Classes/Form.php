@@ -1,15 +1,13 @@
 <?php
 
-namespace App\Livewire\Alunos;
+namespace App\Livewire\Classes;
 
 use Livewire\Component;
-use App\Models\Aluno;
 
 class Form extends Component
 {
-
     public function render()
     {
-        return view('livewire.alunos.form');
+        return view('livewire.classes.form');
     }
 }

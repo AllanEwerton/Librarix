@@ -28,13 +28,12 @@ class Form extends Component
 
 
         if($this->idAutor){
-            Autor::find($this->idAutor)->update(['nome' => $this->nome, ]);
-            session()->flash('message', 'Autor atualizado com sucesso.');
-            $this->dispatch('salvo');
+            $autor = Autor::find($this->idAutor);
+            $autor->update(['nome' => $this->nome, ]);
+            session()->flash('message', 'Autor '.$this->nome.' atualizado com sucesso.');
         }else{
-            Autor::create(['nome' => $this->nome,]);
-            session()->flash('message', 'Autor cadastrado com sucesso.');
-            $this->dispatch('salvo');
+            $autor = Autor::create(['nome' => $this->nome, ]);
+            session()->flash('message', 'Autor '.$this->nome.' cadastrado com sucesso.');
         }
 
     }

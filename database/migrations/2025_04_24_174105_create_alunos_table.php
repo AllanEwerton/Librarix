@@ -13,11 +13,9 @@ return new class extends Migration
     {
         Schema::create('alunos', function (Blueprint $table) {
             $table->id();
-            $table->string('nome');
+            $table->foreignId('classes_id')->constrained('classes')->onDelete('cascade');            $table->string('nome');
             $table->string('email')->unique()->nullable();
             $table->string('telefone')->nullable();
-            $table->string('turma');
-            $table->enum('turno', ['manhã', 'tarde', 'noite']);
             $table->string('matricula')->unique();
             $table->enum('status', ['ativo', 'inativo'])->default('ativo');
             $table->timestamps();

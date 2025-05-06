@@ -11,10 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('itens_emprestimos', function (Blueprint $table) {
+        Schema::create('classes', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('emprestimo_id')->constrained('emprestimos')->onDelete('cascade');
-            $table->foreignId('livro_id')->constrained('livros')->onDelete('cascade');
+            $table->string('name');
+            $table->string('ano');
+            $table->enum('turno', ['manhã', 'tarde', 'noite']);
+            $table->enum('nivel', ['fundamental', 'médio', 'eja']);
+            $table->enum('status', ['active', 'inactive'])->default('active');
             $table->timestamps();
         });
     }
@@ -24,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('itens_emprestimos');
+        Schema::dropIfExists('classes');
     }
 };
