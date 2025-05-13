@@ -24,4 +24,8 @@ Route::view('livro', 'livro')
 ->middleware(['auth'])
 ->name('livro');
 
+Route::view('classe', 'classe')
+->middleware(['auth'])
+->name('classe');
+
 require __DIR__.'/auth.php';

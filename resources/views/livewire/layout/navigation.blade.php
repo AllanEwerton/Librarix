@@ -39,6 +39,10 @@ new class extends Component
                     <x-nav-link :href="route('aluno')" :active="request()->routeIs('aluno')" wire:navigate>
                         Alunos
                     </x-nav-link>
+                    
+                     <x-nav-link :href="route('classe')" :active="request()->routeIs('classe')" wire:navigate>
+                        Turma
+                    </x-nav-link>
 
                     <x-nav-link :href="route('autor')" :active="request()->routeIs('autor')" wire:navigate>
                         Autores

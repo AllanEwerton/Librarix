@@ -9,14 +9,13 @@ use app\Models\Classes;
 class Aluno extends Model
 {
     use hasFactory;
-    protected $fillable = [
+        protected $fillable = [
         'nome',
         'email',
         'telefone',
-        'turma',
-        'turno',
         'matricula',
-        'status'
+        'status',
+        'classes_id' // ADICIONE ESTA LINHA
     ];
     public function emprestimos()
     {
