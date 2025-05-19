@@ -5,7 +5,7 @@ namespace App\Livewire\Alunos;
 use Livewire\Component;
 use App\Models\Aluno;
 use App\Models\Classes;
-use Illuminate\Validation\Rule;
+
 
 class Form extends Component
 {
@@ -93,4 +93,13 @@ class Form extends Component
         session()->flash('error', 'Erro ao salvar aluno: '.$e->getMessage());
     }
 }
+
+public function render(){
+
+    return view('livewire.alunos.form');
+}
+
+
+
+
 }
