@@ -15,6 +15,7 @@
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 <body class="font-sans antialiased text-gray-900 bg-bege-claro">
+    @livewire('components.alert-modal')
     <div class="min-h-screen pt-24">
         <livewire:layout.navigation />
 
@@ -32,5 +33,7 @@
             {{ $slot }}
         </main>
     </div>
+    <script src="https://unpkg.com/lottie-web@5.7.4/build/player/lottie.min.js"></script>
+
 </body>
 </html>

@@ -5,7 +5,7 @@ namespace App\Livewire\Alunos;
 use Livewire\Component;
 use App\Models\Aluno;
 use App\Models\Classes;
-
+use Livewire\Attributes\Validate;
 
 class Form extends Component
 {
@@ -65,6 +65,7 @@ class Form extends Component
     public function save()
 {
     $this->validate();
+    
     $classes_id = $this->idClasseSelecionada ?: Classes::findOrFail(['nome' => $this->classeNome])->id;
 
     try {
@@ -74,23 +75,22 @@ class Form extends Component
             'telefone' => $this->telefone,
             'matricula' => $this->matricula,
             'status' => $this->status,
-            'classes_id' => $classes_id // Garante que o classes_id está incluído
+            'classe_id' => $classes_id, // Garante que o classes_id está incluído
+
         ];
 
         if ($this->aluno_id) {
             $aluno = Aluno::findOrFail($this->aluno_id);
             $aluno->update($data);
-            $message = 'Aluno '.$this->nome.' editado com sucesso!';
+            $this->dispatch('showAlert', 'success', 'Sucesso!', 'Aluno '.$this->nome.' editado com sucesso!');
         } else {
             Aluno::create($data);
-            $message = 'Aluno '.$this->nome.' cadastrado com sucesso!';
+            $this->dispatch('showAlert', 'success', 'Sucesso!', 'Aluno '.$this->nome.' criado com sucesso!');
         }
 
         $this->reset();
-        session()->flash('success', $message);
-
     } catch (\Exception $e) {
-        session()->flash('error', 'Erro ao salvar aluno: '.$e->getMessage());
+        $this->dispatch('showAlert', 'error', 'Sucesso!', 'Erro ao salvar aluno: '.$e->getMessage());
     }
 }
 

@@ -99,7 +99,7 @@
 
         <!-- Botão de Ação -->
         <div class="flex justify-end pt-4 border-t border-gray-100">
-            <x-primary-button type="submit" wire:loading.attr="disabled" class="min-w-32 bg-blue-600 hover:bg-blue-700 focus:ring-blue-500">
+            <x-primary-button type="submit" wire:loading.attr="disabled" class="min-w-32 bg-blue-600 hover:bg-blue-700 focus:ring-blue-500" >
                 <span wire:loading.remove>Salvar Cadastro</span>
                 <span wire:loading class="flex items-center">
                     <svg class="animate-spin -ml-1 mr-2 h-4 w-4 text-white inline" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
@@ -111,4 +111,10 @@
             </x-primary-button>
         </div>
     </form>
+            <x-primary-button @click="$dispatch('showAlert', { type: 'success', title: 'Sucesso!', message: 'Aluno adicionado com sucesso!' })">
+                        Abrir Modal
+            </x-primary-button>
+            <x-danger-button @click="$dispatch('showAlert', { type: 'error', title: 'Erro!', message: 'Ocorreu um erro ao adicionar o aluno.' })">
+                Abrir Modal
+            </x-danger-button>
 </div>
