@@ -65,7 +65,7 @@ class Form extends Component
     public function save()
 {
     $this->validate();
-    
+
     $classes_id = $this->idClasseSelecionada ?: Classes::findOrFail(['nome' => $this->classeNome])->id;
 
     try {
@@ -90,7 +90,7 @@ class Form extends Component
 
         $this->reset();
     } catch (\Exception $e) {
-        $this->dispatch('showAlert', 'error', 'Sucesso!', 'Erro ao salvar aluno: '.$e->getMessage());
+        $this->dispatch('showAlert', 'error', 'Erro!', 'Erro ao salvar aluno: '.$e->getMessage());
     }
 }
 

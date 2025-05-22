@@ -5,11 +5,29 @@ namespace App\Livewire\Classes;
 use Livewire\Component;
 use App\Models\Classes;
 use Illuminate\Validation\Rule; // Adicione esta linha
+use Livewire\Attributes\On;
 
 class Form extends Component
 {
     public $id, $nome, $turno, $ano, $nivel, $status;
 
+public function resetFields()
+{
+    $this->id = null;
+    $this->nome = null;
+    $this->turno = null;
+    $this->ano = null;
+    $this->nivel = null;
+    $this->status = null;
+}
+
+#[On('closeedit')]
+public function closeedit()
+{
+    $this->resetFields();
+}
+
+    #[On('edit')]
     public function mount($id = null)
     {
         if ($id) {
@@ -48,26 +66,26 @@ class Form extends Component
     {
         $this->validate();
 
-        if($this->validate()){
-        $data = [
-            'nome' => $this->nome,
-            'turno' => $this->turno,
-            'ano' => $this->ano,
-            'nivel' => $this->nivel,
-            'status' => $this->id ? $this->status : 'ativo' // Mantém o status ao editar
-        ];
+        try {
+            $data= [
+                'nome' => $this->nome,
+                'turno' => $this->turno,
+                'ano' => $this->ano,
+                'nivel' => $this->nivel,
+                'status' => $this->status ?? 'ativo'
+            ];
 
         if ($this->id) {
             Classes::find($this->id)->update($data);
-            session()->flash('ok', 'Turma "'. $this->nome .'" atualizada com sucesso!');
+            $this->dispatch('showAlert', 'success', 'Sucesso!', 'Turma atualizada com sucesso!');
+            $this->resetFields();
         } else {
             Classes::create($data);
-            session()->flash('ok', 'Turma "'. $this->nome .'" criada com sucesso!');
+            $this->dispatch('showAlert', 'success', 'Sucesso!', 'Turma cadastrada com sucesso!');
         }
-
-        $this->reset();
+        }catch (\Exception $e) {
+        $this->dispatch('showAlert', 'error', 'Erro!', 'Erro ao salvar turma: '.$e->getMessage());
     }
-    session()->flash('error', 'Erro ao salvar turma!');
     }
 
     public function render()

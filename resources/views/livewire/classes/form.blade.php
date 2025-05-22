@@ -106,12 +106,14 @@
 
             <!-- Rodapé do Formulário -->
             <div class="flex flex-col-reverse sm:flex-row justify-between gap-4 pt-6 border-t border-cinza-claro">
-                <a
-                    href="#"
-                    class="inline-flex justify-center px-4 py-2 text-sm font-medium text-azul-escuro hover:text-azul-escuro/80 bg-white hover:bg-cinza-claro border border-cinza-claro rounded-lg shadow-sm"
-                >
+                @if ($id)
+                    <x-secondary-button
+                    wire:click="closeedit({{ $id = null }})"
+                    class="w-full sm:w-auto justify-center bg-cinza-claro hover:bg-cinza-claro/90 focus:ring-2 focus:ring-cinza-claro focus:ring-offset-2">
                     Cancelar
-                </a>
+                </x-secondary-button>
+
+                @endif
                 <x-primary-button type="submit" class="w-full sm:w-auto justify-center bg-azul-escuro hover:bg-azul-escuro/90 focus:ring-2 focus:ring-azul-escuro focus:ring-offset-2">
                     <span wire:loading.remove wire:target="salvar">
                         {{ $id ? 'Atualizar' : 'Salvar' }}

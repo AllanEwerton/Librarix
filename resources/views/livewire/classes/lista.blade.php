@@ -1,18 +1,19 @@
-<div class="bg-bege-claro min-h-screen p-4 sm:p-6">
-        <!-- Cabeçalho -->
-        <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 p-4 sm:p-6 border-b border-cinza-claro">
-            <h1 class="text-2xl sm:text-3xl font-bold text-azul-escuro">Lista de Turmas</h1>
-            <a href="#" class="w-full sm:w-auto bg-azul-escuro hover:bg-azul-escuro/90 text-white font-medium py-2 px-4 rounded-lg transition-all text-center">
-                Nova Turma
-            </a>
-        </div>
 
-        <!-- Filtros -->
-     <div class="mb-6 flex flex-col md:flex-row gap-4">
+<div class="bg-white p-4 rounded-lg shadow">
+    <!-- Cabeçalho -->
+    <div class="flex justify-between items-center mb-6">
+        <h1 class="text-2xl font-bold text-gray-800">Lista de Turma</h1>
+        <a href="#" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded">
+            Novo Turma
+        </a>
+    </div>
+
+    <!-- Filtros -->
+    <div class="mb-6 flex flex-col md:flex-row gap-4">
         <input
             wire:model.live="search"
             type="text"
-            placeholder="Buscar alunos..."
+            placeholder="Buscar Turma..."
             class="flex-1 p-2 border rounded"
         >
 
@@ -28,53 +29,42 @@
                 <option value="25">25</option>
             </select>
         </div>
-     </div>
+    </div>
 
-     <!-- Lista de turma -->
-     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-        @forelse($classes as $classe)
+    <!-- Lista de Turma -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        @forelse($classes as $turma)
             <div class="border rounded-lg p-4 shadow-sm">
-                <h3 class="font-bold text-lg text-gray-800">{{ $classe->nome }}</h3>
+                <h3 class="font-bold text-lg text-gray-800">{{ $turma->nome }}</h3>
 
                 <div class="mt-2 text-sm text-gray-600">
-                    <p>Ano: {{ $classe->ano }}</p>
-                    <p>Turno: {{ ucfirst($classe->turno) }}</p>
-                    <p>Modalidade: {{ ucfirst($classe->nivel) }}</p>
-
+                    <p>Ano: {{ $turma->ano }}</p>
+                    <p>Turno: {{ ucfirst($turma->turno) }}</p>
+                    <p>Modalidade: {{ ucfirst($turma->nivel) }}</p>
                     <span class="inline-block mt-1 px-2 py-1 text-xs rounded-full
-                        {{ $classe->status === 'ativo' ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800' }}">
-                        {{ ucfirst($classe->status) }}
+                        {{ $turma->status === 'ativo' ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800' }}">
+                        {{ ucfirst($turma->status) }}
                     </span>
                 </div>
 
                 <div class="mt-3 pt-3 border-t flex justify-end gap-2">
-                    <a href="#" class="text-blue-600 hover:text-blue-800 text-sm">Editar</a>
-                    <button class="text-sm {{ $classe->status === 'ativo' ? 'text-red-600' : 'text-green-600' }}">
-                        {{ $classe->status === 'ativo' ? 'Inativar' : 'Ativar' }}
-                    </button>
+                    <x-secondary-button
+                        wire:click="edit({{ $turma->id }})"
+                        class="bg-blue-600 hover:bg-blue-700 text-white">
+                        Editar
+                    </x-secondary-button>
+
                 </div>
             </div>
         @empty
             <div class="col-span-full text-center py-8 text-gray-500">
-                Nenhuma turma encontrada
+                Nenhum aluno encontrado
             </div>
         @endforelse
-     </div>
+    </div>
 
-        <!-- Paginação -->
-        <div class="px-4 py-3 sm:px-6 ">
-            {{ $classes->links() }}
-        </div>
-
-        <!-- Mensagem de Status -->
-        @if(session()->has('message'))
-            <div class="fixed bottom-4 right-4 z-50">
-                <div class="bg-verde-bandeira text-white px-4 py-2 rounded-lg shadow-lg flex items-center animate-fade-in-up">
-                    <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
-                    </svg>
-                    <span>{{ session('message') }}</span>
-                </div>
-            </div>
-        @endif
+    <!-- Paginação -->
+    <div class="mt-6">
+        {{ $classes->links() }}
+    </div>
 </div>

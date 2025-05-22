@@ -27,13 +27,17 @@ class Form extends Component
         $this->validate(['nome' => 'required|min:3|max:255',]);
 
 
-        if($this->idAutor){
-            $autor = Autor::find($this->idAutor);
-            $autor->update(['nome' => $this->nome, ]);
-            session()->flash('ok', 'Autor '.$this->nome.' atualizado com sucesso.');
-        }else{
-            $autor = Autor::create(['nome' => $this->nome, ]);
-            session()->flash('ok', 'Autor '.$this->nome.' cadastrado com sucesso.');
+        try {
+            if ($this->idAutor) {
+                Autor::find($this->idAutor)->update(['nome' => $this->nome]);
+                $this->dispatch('alert', ['type' => 'success', 'message' => 'Autor atualizado com sucesso!']);
+            } else {
+                Autor::create(['nome' => $this->nome]);
+                $this->dispatch('alert', ['type' => 'success', 'message' => 'Autor cadastrado com sucesso!']);
+            }
+            $this->reset();
+        } catch (\Exception $e) {
+            $this->dispatch('alert', ['type' => 'error', 'message' => 'Erro ao salvar o autor: ' .$e->getMessage()]);
         }
 
     }
