@@ -13,7 +13,7 @@ class Categoria extends Model
     ];
     protected $table = 'categorias';
 
-    public function books()
+    public function livros()
     {
         return $this->hasMany(Livro::class);
     }

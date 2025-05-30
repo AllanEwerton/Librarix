@@ -154,7 +154,7 @@
                         </h3>
 
                         <!-- Autor -->
-                        <p class="text-xs xs:text-sm text-gray-600 mb-1.5 line-clamp-1">{{ $livro->autor }}</p>
+                        <p class="text-xs xs:text-sm text-gray-600 mb-1.5 line-clamp-1">{{ $livro->autor->nome }}</p>
 
                         <!-- Categoria -->
                         @if($livro->categoria)
